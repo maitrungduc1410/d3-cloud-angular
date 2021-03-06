@@ -1,0 +1,46 @@
+{
+  "name": "angular-d3-cloud",
+  "title": "Angular D3 Word Cloud",
+  "description": "D3 word cloud component for Angular built upon d3-cloud",
+  "version": "1.0.9",
+  "peerDependencies": {
+    "@angular/common": "^11.0.9",
+    "@angular/core": "^11.0.9"
+  },
+  "devDependencies": {
+    "@types/d3-cloud": "^1.2.3"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0",
+    "d3-cloud": "^1.2.5",
+    "d3-scale": "^3.2.3",
+    "d3-scale-chromatic": "^2.0.0",
+    "d3-selection": "^2.0.0"
+  },
+  "author": {
+    "email": "maitrungduc1410@gmail.com",
+    "name": "Mai Trung Duc",
+    "url": "https://github.com/maitrungduc1410"
+  },
+  "repository": {
+    "url": "https://github.com/maitrungduc1410/d3-cloud-angular.git",
+    "type": "git"
+  },
+  "bugs": {
+    "email": "maitrungduc1410@gmail.com",
+    "url": "https://github.com/maitrungduc1410/d3-cloud-angular/issues"
+  },
+  "homepage": "https://github.com/maitrungduc1410/d3-cloud-angular",
+  "readme": "README.md",
+  "license": "MIT",
+  "licenseFilename": "LICENSE",
+  "keywords": [
+    "angular-d3-cloud",
+    "angular-d3-word-cloud",
+    "angular d3 cloud",
+    "word cloud",
+    "d3 word cloud",
+    "angular word cloud",
+    "d3 cloud"
+  ]
+}
