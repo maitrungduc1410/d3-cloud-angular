@@ -4,6 +4,8 @@
     <p class="lead">Change the options and click Apply button</p>
     <hr class="my-4">
     <div class="form-inline">
+        <input class="form-check-input" type="checkbox" id="chkAnimations" [checked]="options.animations" (change) = "options.animations=!options.animations">
+        <label class="my-1 mr-3 form-check-label" for="chkAnimations">Animations</label>
 
         <input class="form-check-input" type="checkbox" id="chkRotate" [checked]="options.rotate" (change) = "options.rotate=!options.rotate">
         <label class="my-1 mr-3 form-check-label" for="chkRotate">Rotate</label>
@@ -29,6 +31,7 @@
       font="impact"
       [autoFill]="autoFill"
       [fillMapper]="fillMapper"
+      [animations]="animations"
     ></angular-d3-cloud>
   </div>
 </div>

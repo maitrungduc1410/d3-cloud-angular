@@ -102,7 +102,7 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
           } else {
             texts
             .style('font-size', 1)
-            .style("fill-opacity", 0);
+            .style("fill-opacity", 1e-6)
           }
 
         if (this.isMouseClickUsed) {
@@ -127,11 +127,9 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
         texts
         .transition()
             .duration(600)
-            .style("font-size", function(d) { return d.size + "px"; })
-            .attr("transform", function(d) {
-                return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-            })
-            .style("fill-opacity", 1);
+            .attr('transform', d => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
+            .style('font-size', d => `${d.size}px`)
+            .style("fill-opacity", 1)
 
         //Exiting words
         texts.exit()
@@ -139,9 +137,8 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
             .duration(200)
             .style('fill-opacity', 1e-6)
             .attr('font-size', 1)
-            .remove();
+            .remove()
       }
-
       })
 
     layout.start()
