@@ -9,7 +9,6 @@ import { AngularD3Word } from './interfaces';
 
 const fill = scaleOrdinal(schemeCategory10);
 const defaultFontSizeMapper: any = (word: AngularD3Word) => word.value;
-const defaultFillMapper: any = (datum: cloud.Word, index: number) => fill(index.toString());
 @Component({
   selector: 'angular-d3-cloud',
   templateUrl: './angular-d3-cloud.component.html',
@@ -25,8 +24,9 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
   @Input() fontSizeMapper?: (datum: cloud.Word, index: number) => number = defaultFontSizeMapper
   @Input() rotate?: number | ((datum: cloud.Word, index: number) => number) = 0
   @Input() autoFill?: boolean = true
-  @Input() fillMapper?: (datum: cloud.Word, index: number) => string = defaultFillMapper
-  @Input() animations?: boolean = false
+  @Input() fillMapper?: (datum: cloud.Word, index: number) => string;
+  @Input() animations?: boolean = true
+
   @Output() wordClick = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
   @Output() wordMouseOver = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
   @Output() wordMouseOut = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
@@ -82,8 +82,11 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
           .append('text')
           .style('font-family', this.font as any)
           .style('fill', (word, i) => {
-            if (this.autoFill && this.fillMapper) {
-              return this.fillMapper(word, i)
+            if (this.autoFill) {
+              if (this.fillMapper)
+                return this.fillMapper(word, i)
+              else
+                return fill(i.toString())
             } else {
               return null
             }
@@ -169,7 +172,7 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
       throw new TypeError(`${AngularD3CloudComponent.TAG}: [fontSizeMapper] must be a function. Current value is: [${this.fontSizeMapper}]`)
     }
 
-    if (!this.fillMapper || typeof this.fillMapper !== 'function') {
+    if (this.fillMapper && typeof this.fillMapper !== 'function') {
       throw new TypeError(`${AngularD3CloudComponent.TAG}: [fillMapper] must be a function. Current value is: [${this.fillMapper}]`)
     }
 
