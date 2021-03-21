@@ -1,6 +1,8 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import * as cloud from 'd3-cloud'
 import { select } from 'd3-selection';
+import "d3-transition";
+
 import { scaleOrdinal } from 'd3-scale';
 import { schemeCategory10 } from 'd3-scale-chromatic';
 import { AngularD3Word } from './interfaces';
@@ -24,6 +26,7 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
   @Input() rotate?: number | ((datum: cloud.Word, index: number) => number) = 0
   @Input() autoFill?: boolean = true
   @Input() fillMapper?: (datum: cloud.Word, index: number) => string = defaultFillMapper
+  @Input() animations?: boolean = false
   @Output() wordClick = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
   @Output() wordMouseOver = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
   @Output() wordMouseOut = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
@@ -77,7 +80,6 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
           .data(words)
           .enter()
           .append('text')
-          .style('font-size', d => `${d.size}px`)
           .style('font-family', this.font as any)
           .style('fill', (word, i) => {
             if (this.autoFill && this.fillMapper) {
@@ -87,8 +89,18 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
             }
           })
           .attr('text-anchor', 'middle')
-          .attr('transform', d => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
-          .text((d: any) => d.text)
+          .text((d: any) => d.text);
+
+          if (!this.animations) {
+            texts
+            .attr('transform', d => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
+            .style('font-size', d => `${d.size}px`)
+
+          } else {
+            texts
+            .style('font-size', 1)
+            .style("fill-opacity", 0);
+          }
 
         if (this.isMouseClickUsed) {
           texts.on('click', (event: MouseEvent, word: cloud.Word) => {
@@ -106,6 +118,27 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
             this.wordMouseOut.emit({ event, word })
           })
         }
+
+      if (this.animations) {
+        //Entering and existing words
+        texts
+        .transition()
+            .duration(600)
+            .style("font-size", function(d) { return d.size + "px"; })
+            .attr("transform", function(d) {
+                return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+            })
+            .style("fill-opacity", 1);
+
+        //Exiting words
+        texts.exit()
+        .transition()
+            .duration(200)
+            .style('fill-opacity', 1e-6)
+            .attr('font-size', 1)
+            .remove();
+      }
+
       })
 
     layout.start()
