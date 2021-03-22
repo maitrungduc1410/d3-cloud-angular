@@ -36,7 +36,7 @@ export class AppComponent {
   };
 
   constructor() {
-    this.rotateScale = scaleLinear().range([-60, 60]);
+    this.rotateScale = scaleLinear().range([-90, 90]);
     this.rotateScale.domain([0,1]);
     this.initData();
     this.applyOptions();

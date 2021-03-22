@@ -25,7 +25,7 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
   @Input() rotate?: number | ((datum: cloud.Word, index: number) => number) = 0
   @Input() autoFill?: boolean = true
   @Input() fillMapper?: (datum: cloud.Word, index: number) => string;
-  @Input() animations?: boolean = true
+  @Input() animations?: boolean = false;
 
   @Output() wordClick = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
   @Output() wordMouseOver = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
@@ -98,6 +98,7 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
             texts
             .attr('transform', d => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
             .style('font-size', d => `${d.size}px`)
+            .style("fill-opacity", 1)
 
           } else {
             texts
