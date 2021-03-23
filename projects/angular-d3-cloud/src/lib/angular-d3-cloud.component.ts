@@ -138,7 +138,7 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
       throw new TypeError(`${AngularD3CloudComponent.TAG}: [fontSizeMapper] must be a function. Current value is: [${this.fontSizeMapper}]`)
     }
 
-    if (this.fillMapper && typeof this.fillMapper !== 'function') {
+    if (!this.fillMapper || typeof this.fillMapper !== 'function') {
       throw new TypeError(`${AngularD3CloudComponent.TAG}: [fillMapper] must be a function. Current value is: [${this.fillMapper}]`)
     }
 
