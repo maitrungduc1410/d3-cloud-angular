@@ -1,7 +1,7 @@
 import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
 import * as cloud from 'd3-cloud'
 import { select } from 'd3-selection';
-import "d3-transition";
+import 'd3-transition';
 
 import { scaleOrdinal } from 'd3-scale';
 import { schemeCategory10 } from 'd3-scale-chromatic';
@@ -94,53 +94,43 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
           .attr('text-anchor', 'middle')
           .text((d: any) => d.text);
 
-          if (!this.animations) {
-            texts
+        if (!this.animations) {
+          texts
             .attr('transform', d => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
             .style('font-size', d => `${d.size}px`)
             .style("fill-opacity", 1)
-
-          } else {
-            // Initial status
-            texts
+        } else {
+          // Initial status
+          texts
             .style('font-size', 1)
             .style("fill-opacity", 1e-6);
 
-            //Entering and existing words
-            texts
+          //Entering and existing words
+          texts
             .transition()
-                .duration(600)
-                .attr('transform', d => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
-                .style('font-size', d => `${d.size}px`)
-                .style("fill-opacity", 1);
+            .duration(600)
+            .attr('transform', d => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
+            .style('font-size', d => `${d.size}px`)
+            .style("fill-opacity", 1);
+        }
 
-            //Exiting words
-            texts
-            .exit()
-            .transition()
-                .duration(200)
-                .style('fill-opacity', 1e-6)
-                .attr('font-size', 1)
-                .remove();
-          }
+        if (this.isMouseClickUsed) {
+          texts.on('click', (event: MouseEvent, word: cloud.Word) => {
+            this.wordClick.emit({ event, word })
+          })
+        }
+        if (this.isMouseOverUsed) {
+          texts.on('mouseover', (event: MouseEvent, word: cloud.Word) => {
+            this.wordMouseOver.emit({ event, word })
+          })
+        }
 
-          if (this.isMouseClickUsed) {
-            texts.on('click', (event: MouseEvent, word: cloud.Word) => {
-              this.wordClick.emit({ event, word })
-            })
-          }
-          if (this.isMouseOverUsed) {
-            texts.on('mouseover', (event: MouseEvent, word: cloud.Word) => {
-              this.wordMouseOver.emit({ event, word })
-            })
-          }
-
-          if (this.isMouseOutUsed) {
-            texts.on('mouseout', (event: MouseEvent, word: cloud.Word) => {
-              this.wordMouseOut.emit({ event, word })
-            })
-          }
-        });
+        if (this.isMouseOutUsed) {
+          texts.on('mouseout', (event: MouseEvent, word: cloud.Word) => {
+            this.wordMouseOut.emit({ event, word })
+          })
+        }
+      });
     layout.start()
   }
 
@@ -169,7 +159,7 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
       throw new TypeError(`${AngularD3CloudComponent.TAG}: [fontSizeMapper] must be a function. Current value is: [${this.fontSizeMapper}]`)
     }
 
-    if (this.fillMapper && typeof this.fillMapper !== 'function') {
+    if (!this.fillMapper || typeof this.fillMapper !== 'function') {
       throw new TypeError(`${AngularD3CloudComponent.TAG}: [fillMapper] must be a function. Current value is: [${this.fillMapper}]`)
     }
 
