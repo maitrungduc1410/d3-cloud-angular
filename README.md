@@ -56,7 +56,7 @@ export class AppComponent {
 | font           | The font of text shown                                                                                     | Function \| string                            |          | serif               |
 | autoFill       | Whether texts should be fill with random color or not                                                      | boolean                                       |          | false               |
 | fillMapper | Function used by autoFill to map each data item to a fill color. Can be used to customize the way autoFill generate colors | Function: (word: Word, index: number): string |          | A function based on schemeCategory10 of d3-scale-chromatic|
-
+| animations | Whether animated transitions is active or not | boolean |          |  false |
 # Events
 | Name          | Description                                              | Payload                           |
 |---------------|----------------------------------------------------------|-----------------------------------|

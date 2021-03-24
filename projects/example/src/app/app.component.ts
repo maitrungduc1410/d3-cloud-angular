@@ -15,6 +15,7 @@ export class AppComponent {
   public fillMapper: any;
   public fillFx: any;
   public title: string = "Welcome to d3-cloud-angular demo";
+  public animations: boolean = true;
 
   private rotateScale;
   public autoFill: boolean = true;
@@ -29,18 +30,20 @@ export class AppComponent {
 
   public options: any = {
     autoFill: true,
-    rotate: false,
-    fillScheme: 0
+    rotate: true,
+    fillScheme: 0,
+    animations: true
   };
 
   constructor() {
-    this.rotateScale = scaleLinear().range([-60, 60]);
+    this.rotateScale = scaleLinear().range([-90, 90]);
     this.rotateScale.domain([0,1]);
     this.initData();
     this.applyOptions();
   }
 
   applyOptions() {
+    this.animations = this.options.animations;
     this.autoFill = this.options.autoFill;
     if (this.options.rotate) {
       this.rotate = () => {
@@ -55,7 +58,6 @@ export class AppComponent {
     this.fillMapper = (datum: any, index: number) => {
       return this.fillFx(index.toString());
     }
-
     this.initData();
   }
 
