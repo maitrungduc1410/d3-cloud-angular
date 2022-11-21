@@ -10,7 +10,7 @@ describe('AngularD3CloudService', () => {
     service = TestBed.inject(AngularD3CloudService);
   });
 
-  it('should be created', () => {
+  test('should create the service', () => {
     expect(service).toBeTruthy();
-  });
+  }); 
 });

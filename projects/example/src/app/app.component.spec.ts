@@ -4,8 +4,8 @@ import { AngularD3CloudModule } from 'angular-d3-cloud'
 import { FormsModule } from '@angular/forms';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  beforeEach(() => {
+    TestBed.configureTestingModule({
       declarations: [
         AppComponent
       ],
@@ -13,7 +13,7 @@ describe('AppComponent', () => {
         AngularD3CloudModule,
         FormsModule
       ]
-    }).compileComponents();
+    });
   });
 
   it('should create the app', () => {
