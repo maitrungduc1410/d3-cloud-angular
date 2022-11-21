@@ -26,6 +26,7 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
   @Input() autoFill?: boolean = true
   @Input() fillMapper?: (datum: cloud.Word, index: number) => string;
   @Input() animations?: boolean = false;
+  @Input() fontWeight: string | number = "normal";
 
   @Output() wordClick = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
   @Output() wordMouseOver = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
@@ -62,6 +63,7 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
     const layout = cloud()
       .size([this.width!, this.height!])
       .font(this.font as any)
+      .fontWeight(this.fontWeight)
       .words(this.data)
       .padding(this.padding as any)
       .rotate(this.rotate as any)
@@ -81,6 +83,7 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
           .enter()
           .append('text')
           .style('font-family', this.font as any)
+          .style('font-weight', this.fontWeight)
           .style('fill', (word, i) => {
             if (this.autoFill) {
               if (this.fillMapper)
@@ -169,6 +172,10 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
 
     if (this.autoFill === null || this.autoFill === undefined || typeof this.autoFill !== 'boolean') {
       throw new TypeError(`${AngularD3CloudComponent.TAG}: [autoFill] must be boolean. Current value is: [${this.autoFill}]`)
+    }
+
+    if (this.fontWeight === null || this.fontWeight === undefined || !['number', 'string'].includes(typeof this.fontWeight) || this.fontWeight < 0) {
+      throw new TypeError(`${AngularD3CloudComponent.TAG}: [fontWeight] must be a positive number or a string. Current value is: [${this.fontWeight}]`)
     }
   }
 }

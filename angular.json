@@ -20,26 +20,6 @@
               "tsConfig": "projects/angular-d3-cloud/tsconfig.lib.prod.json"
             }
           }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/angular-d3-cloud/src/test.ts",
-            "tsConfig": "projects/angular-d3-cloud/tsconfig.spec.json",
-            "karmaConfig": "projects/angular-d3-cloud/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/angular-d3-cloud/tsconfig.lib.json",
-              "projects/angular-d3-cloud/tsconfig.spec.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
         }
       }
     },
@@ -108,57 +88,8 @@
               "browserTarget": "example:build:production"
             }
           }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "browserTarget": "example:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/example/src/test.ts",
-            "polyfills": "projects/example/src/polyfills.ts",
-            "tsConfig": "projects/example/tsconfig.spec.json",
-            "karmaConfig": "projects/example/karma.conf.js",
-            "assets": [
-              "projects/example/src/favicon.ico",
-              "projects/example/src/assets"
-            ],
-            "styles": [
-              "projects/example/src/styles.css"
-            ],
-            "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/example/tsconfig.app.json",
-              "projects/example/tsconfig.spec.json",
-              "projects/example/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/example/e2e/protractor.conf.js",
-            "devServerTarget": "example:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "example:serve:production"
-            }
-          }
         }
       }
     }
-  },
-  "defaultProject": "angular-d3-cloud"
+  }
 }

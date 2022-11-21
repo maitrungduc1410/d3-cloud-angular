@@ -6,14 +6,11 @@ describe('AngularD3CloudComponent', () => {
   let component: AngularD3CloudComponent;
   let fixture: ComponentFixture<AngularD3CloudComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      declarations: [ AngularD3CloudComponent ]
-    })
-    .compileComponents();
-  });
-
   beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [ AngularD3CloudComponent ]
+    });
+
     fixture = TestBed.createComponent(AngularD3CloudComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
