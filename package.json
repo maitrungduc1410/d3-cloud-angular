@@ -7,7 +7,11 @@
     "build:example": "ng build example --configuration production",
     "build:all": "npm run build:lib && npm run build:example",
     "update-browserslist": "npx browserslist@latest --update-db",
-    "test": "node --expose-gc node_modules/jest/bin/jest.js --coverage --config jest.config.js --logHeapUsage --maxWorkers=30%"
+    "clean-jest": "rimraf .jest-cache coverage",
+    "run-jest": "node --expose-gc node_modules/jest/bin/jest.js --coverage --config jest.config.js --logHeapUsage --maxWorkers=30%",
+    "run-jest:ci": "node --expose-gc node_modules/jest/bin/jest.js --ci --coverage --config jest.config.js --logHeapUsage",
+    "test": "npm run clean-jest && npm run run-jest",
+    "test:ci": "npm run clean-jest && npm run run-jest:ci"
   },
   "private": true,
   "dependencies": {

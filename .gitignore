@@ -49,4 +49,4 @@ Thumbs.db
 .sonarqube
 .jest-cache
 .angular
-.coverage
+coverage
