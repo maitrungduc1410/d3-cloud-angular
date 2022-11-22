@@ -34,17 +34,17 @@ jobs:
       uses: actions/checkout@v3
 
     - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-          cache: npm
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: npm
 
     - name: Install dependencies
-        run: npm ci
+      run: npm ci
 
     - name: Run build
-        run: npm run build:all --if-present
+      run: npm run build:all --if-present
 
     - name: Run tests
-        run: npm run test:ci
+      run: npm run test:ci
 
