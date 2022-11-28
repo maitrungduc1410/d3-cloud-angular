@@ -1,5 +1,5 @@
 {
-  "name": "@talentia-software-oss/angular-d3-cloud",
+  "name": "@talentia/angular-d3-cloud",
   "title": "Angular D3 Word Cloud",
   "description": "D3 word cloud component for Angular built upon d3-cloud",
   "version": "1.3.0",   

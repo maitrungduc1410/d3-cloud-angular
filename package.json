@@ -1,6 +1,6 @@
 {
-  "name": "@talentia/angular-d3-cloud",
-  "version": "1.3.0",
+  "name": "angular-d3-cloud",
+  "version": "0.0.0",
   "scripts": {
     "start": "npm run build:lib && ng serve example",
     "build:lib": "ng build angular-d3-cloud --configuration production",
