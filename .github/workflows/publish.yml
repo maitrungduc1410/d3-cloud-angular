@@ -39,7 +39,7 @@ jobs:
         run: npm ci
 
       - name: Run build only library
-        run: build:lib --if-present
+        run: npm run build:lib --if-present
     
       - name: Publish package
         run: npm publish ./dist/angular-d3-cloud
