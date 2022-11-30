@@ -14,10 +14,10 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "importHelpers": true,
-    "target": "es2020",
-    "module": "es2020",  
+    "target": "ES2022",
+    "module": "ES2022",
     "lib": [
-      "es2020",
+      "ES2022",
       "dom"
     ],
     "paths": {
@@ -25,7 +25,8 @@
         "dist/angular-d3-cloud/angular-d3-cloud",
         "dist/angular-d3-cloud"
       ]
-    }
+    },
+    "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
