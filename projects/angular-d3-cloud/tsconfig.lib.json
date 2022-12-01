@@ -7,13 +7,7 @@
     "declarationMap": true,
     "inlineSources": true,
     "types": []
-  },
-  "angularCompilerOptions": {
-    "compilationMode": "partial",
-    "skipTemplateCodegen": true,
-    "strictMetadataEmit": true,
-    "enableResourceInlining": true
-  },
+  },  
   "exclude": [
     "src/test.ts",
     "**/*.spec.ts"
