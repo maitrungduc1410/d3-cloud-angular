@@ -1,10 +1,18 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "paths": {
+      "angular-d3-cloud": [
+        "dist/angular-d3-cloud/angular-d3-cloud",
+        "dist/angular-d3-cloud"
+      ]
+    },
     "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    "noImplicitOverride": true,
+    "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -16,19 +24,14 @@
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
+    "useDefineForClassFields": false,
     "lib": [
       "ES2022",
       "dom"
-    ],
-    "paths": {
-      "angular-d3-cloud": [
-        "dist/angular-d3-cloud/angular-d3-cloud",
-        "dist/angular-d3-cloud"
-      ]
-    },
-    "useDefineForClassFields": false
+    ]
   },
   "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true

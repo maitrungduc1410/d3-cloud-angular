@@ -18,8 +18,12 @@
           "configurations": {
             "production": {
               "tsConfig": "projects/angular-d3-cloud/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/angular-d3-cloud/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         }
       }
     },
@@ -36,9 +40,10 @@
             "outputPath": "dist/example",
             "index": "projects/example/src/index.html",
             "main": "projects/example/src/main.ts",
-            "polyfills": "projects/example/src/polyfills.ts",
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "projects/example/tsconfig.app.json",
-            "aot": true,
             "assets": [
               "projects/example/src/favicon.ico",
               "projects/example/src/assets"
@@ -50,19 +55,6 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/example/src/environments/environment.ts",
-                  "with": "projects/example/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
               "budgets": [
                 {
                   "type": "initial",
@@ -74,9 +66,19 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "outputHashing": "all"              
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -86,7 +88,10 @@
           "configurations": {
             "production": {
               "browserTarget": "example:build:production"
-            }
+            },
+            "development": {
+							"browserTarget": "example:build:development"
+						}
           }
         }
       }
