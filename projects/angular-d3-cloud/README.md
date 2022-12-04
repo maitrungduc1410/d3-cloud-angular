@@ -54,6 +54,7 @@ export class AppComponent {
 | rotate         | Map each element of data to font rotation degree. Or simply provide a number for global rotation. (degree) | Function \| number                            |          | 0                   |
 | padding        | Map each element of data to font padding. Or simply provide a number for global padding. (px)              | Function \| number                            |          | 5                   |
 | font           | The font of text shown                                                                                     | Function \| string                            |          | serif               |
+| fontWeight | Weight of the font | string \| number |          |  'normal' |
 | autoFill       | Whether texts should be fill with random color or not                                                      | boolean                                       |          | false               |
 | fillMapper | Function used by autoFill to map each data item to a fill color. Can be used to customize the way autoFill generate colors | Function: (word: Word, index: number): string |          | A function based on schemeCategory10 of d3-scale-chromatic|
 | animations | Whether animated transitions is active or not | boolean |          |  false |
