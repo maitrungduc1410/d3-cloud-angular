@@ -1,11 +1,13 @@
 # Angular D3 Word Cloud
 D3 Cloud component for Angular built upon d3-cloud
 
+## This version require Angular CLI 14
+
 <img src="./demo.png">
 
 # Installation
 ```
-npm install --save angular-d3-cloud
+npm install --save @talentia/angular-d3-cloud@1.3.0
 ```
 # Usage
 First import the package to your app module
@@ -73,4 +75,5 @@ ng build angular-d3-cloud --watch
 npm start # in a separate terminal
 ```
 # Thanks
-This project is built with the idea of [React D3 Cloud](https://github.com/Yoctol/react-d3-cloud)
+This project is built with the idea of [React D3 Cloud](https://github.com/Yoctol/react-d3-cloud).
+This project is forked from [maitrungduc1410/d3-cloud-angular](https://github.com/maitrungduc1410/d3-cloud-angular)

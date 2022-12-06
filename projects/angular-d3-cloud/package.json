@@ -19,19 +19,24 @@
   },
   "schematics": "./schematics/collection.json",
   "author": {
-    "email": "maitrungduc1410@gmail.com",
-    "name": "Mai Trung Duc",
-    "url": "https://github.com/maitrungduc1410"
+    "name": "Leonardo Cavone",
+    "url": "https://github.com/Talentia-Software-OSS"
   },
+  "contributors": [
+    {
+      "email": "maitrungduc1410@gmail.com",
+      "name": "Mai Trung Duc",
+      "url": "https://github.com/maitrungduc1410"
+    }
+  ],
   "repository": {
-    "url": "https://github.com/maitrungduc1410/d3-cloud-angular.git",
+    "url": "https://github.com/Talentia-Software-OSS/d3-cloud-angular",
     "type": "git"
   },
   "bugs": {
-    "email": "maitrungduc1410@gmail.com",
-    "url": "https://github.com/maitrungduc1410/d3-cloud-angular/issues"
+    "url": "https://github.com/Talentia-Software-OSS/d3-cloud-angular/issues"
   },
-  "homepage": "https://github.com/maitrungduc1410/d3-cloud-angular",
+  "homepage": "https://github.com/Talentia-Software-OSS/d3-cloud-angular",
   "readme": "README.md",
   "license": "MIT",
   "licenseFilename": "LICENSE",
