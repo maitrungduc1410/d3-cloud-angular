@@ -59,10 +59,10 @@ export class AdvancedComponent implements OnInit {
   }
   private _padding: number = 5;
   public get padding(): number {
-    return parseInt(this._padding.toString());
+    return this._padding;
   }
   public set padding(value: number) {
-    this._padding = parseInt(value.toString());
+    this._padding = value;
     this.applyOptions();
   }
 

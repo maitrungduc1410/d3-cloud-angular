@@ -31,8 +31,8 @@
                     <div class="input-group-prepend">
                       <div class="input-group-text">Padding</div>
                     </div>
-                    <select [(ngModel)]="padding" [ngModelOptions]="{standalone: true}"  class="form-select" id="paddingFormSelect">
-                      <option *ngFor="let item of paddings" [value]="item">{{item}}</option>
+                    <select [(ngModel)]="padding" [ngModelOptions]="{standalone: true}" class="form-select" id="paddingFormSelect">
+                      <option *ngFor="let item of paddings" [ngValue]="item">{{item}}</option>
                     </select>
                   </div>
                 </div>
