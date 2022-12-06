@@ -72,7 +72,8 @@
                   [rotate]="rotate"                  
                   [autoFill]="autoFill"
                   [fillMapper]="fillMapper"
-                  [animations]="animations">
+                  [animations]="animations"
+                  (wordClick)="onWordClick($event)">
                 </angular-d3-cloud>
             </p> 
         </div>

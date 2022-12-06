@@ -72,7 +72,11 @@ export class AdvancedComponent implements OnInit {
     this.applyOptions();
   } 
 
-  applyOptions() {        
+  onWordClick(data: { event: MouseEvent, word: AngularD3Word }): void {
+    console.log(data.event?.type, data.word);
+  }
+
+  private applyOptions() {        
     this.rotate = (this.rotation) ? () => rotate(Math.random()) : 0;
     const fillFunction = fill(this.schemas[this.fillScheme].schema);
     this.fillMapper = (word: AngularD3Word, index: number): string => {
