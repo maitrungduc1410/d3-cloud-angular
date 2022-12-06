@@ -84,5 +84,5 @@ ng build angular-d3-cloud --watch
 npm start # in a separate terminal
 ```
 # Thanks
-This project is built with the idea of [React D3 Cloud](https://github.com/Yoctol/react-d3-cloud).  
+This project is built with the idea of [React D3 Cloud](https://github.com/Yoctol/react-d3-cloud).   
 This project is forked from [maitrungduc1410/d3-cloud-angular](https://github.com/maitrungduc1410/d3-cloud-angular).
