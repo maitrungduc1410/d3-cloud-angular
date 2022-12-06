@@ -1,7 +1,14 @@
 # Angular D3 Word Cloud
 D3 Cloud component for Angular built upon d3-cloud
 
-## This version require Angular CLI 14
+## Previous versions
+
+<details>
+  <summary>Click to expand</summary>
+
+- [Version 1.3](https://github.com/Talentia-Software-OSS/d3-cloud-angular/tree/1.3.x)
+
+</details>
 
 <img src="./demo.png">
 
