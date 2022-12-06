@@ -16,7 +16,7 @@ D3 Cloud component for Angular built upon d3-cloud
 
 # Installation
 ```
-npm install --save @talentia/angular-d3-cloud@1.3.0
+npm install --save @talentia/angular-d3-cloud@1.4.0
 ```
 # Usage
 First import the package to your app module
