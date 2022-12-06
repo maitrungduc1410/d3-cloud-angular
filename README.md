@@ -8,7 +8,6 @@ D3 Cloud component for Angular built upon d3-cloud
 <details>
   <summary>Click to expand</summary>
 
-- [Version 1.4.0](https://github.com/Talentia-Software-OSS/d3-cloud-angular/tree/1.4.x)
 - [Version 1.3.0](https://github.com/Talentia-Software-OSS/d3-cloud-angular/tree/1.3.x)
 
 </details>
