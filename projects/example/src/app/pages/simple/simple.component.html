@@ -1,0 +1,14 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <p class="lead mt-3">Click Refresh button to reload</p>
+            <hr class="my-4">
+            <p class="d-flex justify-content-end mt-3">
+                <button type="button" class="btn btn-primary" (click)="refresh()">Refresh</button>
+            </p>                   
+            <p class="col d-flex justify-content-center align-items-center mt-5">
+                <angular-d3-cloud [data]="data"></angular-d3-cloud>
+            </p> 
+        </div>
+    </div>
+</div>

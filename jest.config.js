@@ -1,17 +1,17 @@
 const { defaults } = require('jest-preset-angular/presets');
 
-// const esModules = [
-//   'd3-scale', 
-//   'd3-selection', 
-//   'd3-transition',
-//   'd3-array', 
-//   'd3-ease',   
-//   'd3-interpolate', 
-//   'd3-color', 
-//   'd3-format', 
-//   'd3-time',
-//   'internmap'
-// ];
+const esModules = [
+  'd3-scale', 
+  'd3-selection', 
+  'd3-transition',
+  'd3-array', 
+  'd3-ease',   
+  'd3-interpolate', 
+  'd3-color', 
+  'd3-format', 
+  'd3-time',
+  'internmap'
+];
 
 // eslint-disable-next-line no-undef
 globalThis.ngJest = {
@@ -35,7 +35,7 @@ module.exports = {
   ], 
   cacheDirectory: '.jest-cache',
   resolver: 'jest-preset-angular/build/resolvers/ng-jest-resolver.js',
-  // transformIgnorePatterns: [`node_modules/(?!.*\\.mjs$|${esModules.join('|')})`],
+  transformIgnorePatterns: [`node_modules/(?!.*\\.mjs$|${esModules.join('|')})`],
   roots: [
     '<rootDir>/projects/angular-d3-cloud/src/',
     '<rootDir>/projects/example/src/'

@@ -1,0 +1,80 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">            
+            <p class="lead mt-3">Change the options to apply and reload</p>
+            <hr class="my-4">
+            <form class="row row-cols-lg-auto g-3 align-items-center">              
+                <div class="col-12">
+                  <div class="form-check">
+                    <input [(ngModel)]="animations" [ngModelOptions]="{standalone: true}" [checked]="animations" class="form-check-input" type="checkbox" id="animationsFormCheck">
+                    <label class="form-check-label" for="animationsFormCheck">Animations</label>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="form-check">
+                    <input [(ngModel)]="rotation" [ngModelOptions]="{standalone: true}" [checked]="rotation" class="form-check-input" type="checkbox" id="rotateFormCheck">
+                    <label class="form-check-label" for="rotateFormCheck">Rotate</label>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="form-check">
+                    <input [(ngModel)]="autoFill" [ngModelOptions]="{standalone: true}" [checked]="autoFill" class="form-check-input" type="checkbox" id="autofillFormCheck">
+                    <label class="form-check-label" for="autofillFormCheck">Auto-Fill</label>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label class="sr-only visually-hidden" for="paddingFormSelect">Padding</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Padding</div>
+                    </div>
+                    <select [(ngModel)]="padding" [ngModelOptions]="{standalone: true}"  class="form-select" id="paddingFormSelect">
+                      <option *ngFor="let item of paddings" [value]="item">{{item}}</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label class="sr-only visually-hidden" for="fillSchemeFormSelect">Fill Scheme</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Fill Scheme</div>
+                    </div>
+                    <select [(ngModel)]="fillScheme" [ngModelOptions]="{standalone: true}" [disabled]="!autoFill" class="form-select" id="fillSchemeFormSelect">
+                      <option *ngFor="let item of schemas" [value]="item.id">{{item.name}}</option>
+                    </select>
+                  </div>                    
+                </div>
+
+                <div class="col-12">
+                  <label class="sr-only visually-hidden" for="fontFormSelect">Font</label>
+                  <div class="input-group mb-2">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text">Font</div>
+                    </div>
+                    <select [(ngModel)]="font" [ngModelOptions]="{standalone: true}" class="form-select" id="fontFormSelect">
+                      <option *ngFor="let item of fonts" [value]="item">{{item}}</option>
+                    </select>
+                  </div>                    
+                </div>
+            </form>
+            
+            <p class="col d-flex justify-content-center align-items-center mt-5">
+                <angular-d3-cloud
+                  [width]="700"
+                  [height]="600"
+                  [font]="font"
+                  [data]="data"                  
+                  [padding]="padding"
+                  [rotate]="rotate"                  
+                  [autoFill]="autoFill"
+                  [fillMapper]="fillMapper"
+                  [animations]="animations">
+                </angular-d3-cloud>
+            </p> 
+        </div>
+    </div>
+</div>

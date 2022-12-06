@@ -1,7 +1,16 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import {bootstrapApplication} from '@angular/platform-browser';
+import { provideRouter, Routes } from '@angular/router';
+import { AdvancedComponent } from './app/pages/advanced/advanced.component';
+import { AppComponent } from './app/app.component';
+import { SimpleComponent } from './app/pages/simple/simple.component';
 
-import { AppModule } from './app/app.module';
+const routes: Routes = [
+  { path: '', redirectTo: '/simple', pathMatch: 'full' },
+  { path: 'simple', component: SimpleComponent },
+  { path: 'advanced', component: AdvancedComponent }
+];
 
-
-platformBrowserDynamic().bootstrapModule(AppModule)
-  .catch(err => console.error(err));
+bootstrapApplication(
+  AppComponent, 
+  { providers: [ provideRouter(routes) ]}
+);

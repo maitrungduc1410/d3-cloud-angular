@@ -1,38 +1,8 @@
-<div class="container">
-  <div class="jumbotron">
-    <h1 class="display-4">{{title}}</h1>
-    <p class="lead">Change the options and click Apply button</p>
-    <hr class="my-4">
-    <div class="form-inline">
-        <input class="form-check-input" type="checkbox" id="chkAnimations" [checked]="options.animations" (change) = "options.animations=!options.animations">
-        <label class="my-1 mr-3 form-check-label" for="chkAnimations">Animations</label>
+<!-- NavBar -->
+<app-navbar></app-navbar>
 
-        <input class="form-check-input" type="checkbox" id="chkRotate" [checked]="options.rotate" (change) = "options.rotate=!options.rotate">
-        <label class="my-1 mr-3 form-check-label" for="chkRotate">Rotate</label>
+<!-- Header -->
+<app-header></app-header>
 
-        <input class="form-check-input" type="checkbox" id="chkAutoFill" [checked]="options.autoFill" (change) = "options.autoFill=!options.autoFill">
-        <label class="my-1 mr-3 form-check-label" for="chkAutoFill">Auto-Fill</label>
-
-        <label class="my-1 mr-2">Fill Scheme</label>
-        <select class="form-control" [(ngModel)]="options.fillScheme" [disabled]="!options.autoFill">
-          <option *ngFor="let item of schemas" [value]="item.id">{{item.name}}</option>
-        </select>
-        <a class="my-1 ml-3 btn btn-primary" role="button" (click)="applyOptions()">Apply</a>
-    </div>
-  </div>
-
-  <div class="mx-auto" style="width: 800px;">
-    <angular-d3-cloud
-      [data]="data"
-      [width]="800"
-      [height]="600"
-      [padding]="5"
-      [rotate]="rotate"
-      font="Arial"
-      [autoFill]="autoFill"
-      [fillMapper]="fillMapper"
-      [animations]="animations"
-      (wordClick)="onWordClick($event)"
-    ></angular-d3-cloud>
-  </div>
-</div>
+<!-- Page -->
+<router-outlet></router-outlet>
