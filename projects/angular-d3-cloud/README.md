@@ -1,6 +1,8 @@
 # Angular D3 Word Cloud
 D3 Cloud component for Angular built upon d3-cloud
 
+## This version require Angular CLI 15
+
 ## Previous versions
 
 <details>
