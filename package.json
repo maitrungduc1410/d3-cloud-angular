@@ -6,6 +6,7 @@
     "start": "ng serve",
     "build": "ng build angular-d3-cloud",
     "build:example": "ng build example",
+    "build:pages": "npm run build:example -- --base-href /d3-cloud-angular/",
     "watch": "ng build angular-d3-cloud --watch --configuration development",
     "test": "ng test"
   },

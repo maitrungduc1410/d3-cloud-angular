@@ -19,7 +19,7 @@ jobs:
       - name: Build Library
         run: npm run build
       - name: Build Example
-        run: npm run build:example
+        run: npm run build:pages
       - name: Archive artifact
         shell: sh
         run: |
