@@ -1,43 +1,50 @@
 import { Component } from '@angular/core';
 import { scaleLinear, scaleOrdinal } from 'd3-scale';
-import { schemeCategory10, schemeBlues, schemeGreens, schemePastel1, schemePastel2 } from 'd3-scale-chromatic';
+import {
+  schemeCategory10,
+  schemeBlues,
+  schemeGreens,
+  schemePastel1,
+  schemePastel2,
+} from 'd3-scale-chromatic';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  str = 'Exercitation duis ex laboris laboris est aliqua Lorem veniam ad. Minim aliqua enim do exercitation duis eiusmod sunt do exercitation qui ex. Aliqua velit sunt in commodo anim. Sunt labore sunt dolor exercitation non commodo laboris culpa culpa exercitation ex proident laborum.\n\nId dolore commodo occaecat in velit. Aliqua mollit ea qui ad aute est excepteur non aliqua occaecat ad non ea. Labore incididunt excepteur tempor culpa proident ex commodo. Nisi nostrud tempor deserunt ipsum adipisicing aute do adipisicing.\n\nOfficia pariatur eiusmod tempor magna occaecat. Ut proident anim aute aliquip pariatur et. Pariatur ad ea sint ut excepteur amet id do. Labore eu velit non cillum nulla.\n\nIncididunt duis tempor sunt dolor magna occaecat esse elit consequat. Ea sint et labore amet ullamco non tempor. Ad voluptate nisi duis minim elit in adipisicing et laboris nulla culpa ad'
+  str =
+    'Exercitation duis ex laboris laboris est aliqua Lorem veniam ad. Minim aliqua enim do exercitation duis eiusmod sunt do exercitation qui ex. Aliqua velit sunt in commodo anim. Sunt labore sunt dolor exercitation non commodo laboris culpa culpa exercitation ex proident laborum.\n\nId dolore commodo occaecat in velit. Aliqua mollit ea qui ad aute est excepteur non aliqua occaecat ad non ea. Labore incididunt excepteur tempor culpa proident ex commodo. Nisi nostrud tempor deserunt ipsum adipisicing aute do adipisicing.\n\nOfficia pariatur eiusmod tempor magna occaecat. Ut proident anim aute aliquip pariatur et. Pariatur ad ea sint ut excepteur amet id do. Labore eu velit non cillum nulla.\n\nIncididunt duis tempor sunt dolor magna occaecat esse elit consequat. Ea sint et labore amet ullamco non tempor. Ad voluptate nisi duis minim elit in adipisicing et laboris nulla culpa ad';
   data: any;
 
   public rotate: any = 0;
   public fillMapper: any;
   public fillFx: any;
-  public title: string = "Welcome to d3-cloud-angular demo";
+  public title: string = 'Welcome to d3-cloud-angular demo';
   public animations: boolean = true;
 
   private rotateScale;
   public autoFill: boolean = true;
+  public width = window.innerWidth < 800 ? window.innerWidth - 40 : 800;
 
   public schemas: any[] = [
-    {"id": 0, "name": "Category10", "schema": schemeCategory10 },
-    {"id": 1, "name": "Blues", "schema": schemeBlues[9] },
-    {"id": 2, "name": "Greens", "schema": schemeGreens[9] },
-    {"id": 3, "name": "Pastel1", "schema": schemePastel1 },
-    {"id": 4, "name": "Pastel2", "schema": schemePastel2 },
+    { id: 0, name: 'Category10', schema: schemeCategory10 },
+    { id: 1, name: 'Blues', schema: schemeBlues[9] },
+    { id: 2, name: 'Greens', schema: schemeGreens[9] },
+    { id: 3, name: 'Pastel1', schema: schemePastel1 },
+    { id: 4, name: 'Pastel2', schema: schemePastel2 },
   ];
 
   public options: any = {
     autoFill: true,
     rotate: true,
     fillScheme: 0,
-    animations: true
+    animations: true,
   };
 
   constructor() {
     this.rotateScale = scaleLinear().range([-90, 90]);
-    this.rotateScale.domain([0,1]);
+    this.rotateScale.domain([0, 1]);
     this.initData();
     this.applyOptions();
   }
@@ -48,7 +55,7 @@ export class AppComponent {
     if (this.options.rotate) {
       this.rotate = () => {
         return this.rotateScale(Math.random());
-      }
+      };
     } else {
       this.rotate = 0;
     }
@@ -57,17 +64,17 @@ export class AppComponent {
 
     this.fillMapper = (datum: any, index: number) => {
       return this.fillFx(index.toString());
-    }
+    };
     this.initData();
   }
 
   initData() {
     this.data = this.str.split(' ').map((d) => {
       return { text: d, value: 10 + Math.random() * 90, fill: '0' };
-    })
+    });
   }
 
   onWordClick(event: any) {
-    console.log(event)
+    console.log(event);
   }
 }

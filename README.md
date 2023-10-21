@@ -4,8 +4,12 @@ D3 Cloud component for Angular built upon d3-cloud
 <img src="./demo.png">
 
 # Installation
-```
+```sh
+# for Angular >= 16
 npm install --save angular-d3-cloud
+
+# for Angular < 16
+npm install --save angular-d3-cloud@^1.0.0
 ```
 # Usage
 First import the package to your app module

@@ -1,5 +1,15 @@
-import { Component, ElementRef, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild } from '@angular/core';
-import cloud from 'd3-cloud'
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  OnInit,
+  Output,
+  SimpleChanges,
+  ViewChild,
+} from '@angular/core';
+import * as cloud from 'd3-cloud';
 import { select } from 'd3-selection';
 import 'd3-transition';
 
@@ -12,55 +22,66 @@ const defaultFontSizeMapper: any = (word: AngularD3Word) => word.value;
 @Component({
   selector: 'angular-d3-cloud',
   templateUrl: './angular-d3-cloud.component.html',
-  styleUrls: ['./angular-d3-cloud.component.css']
 })
 export class AngularD3CloudComponent implements OnChanges, OnInit {
   @ViewChild('wordcloud') wordcloud: ElementRef<HTMLDivElement> | undefined;
-  @Input() data: cloud.Word[] = []
-  @Input() width?: number = 700
-  @Input() height?: number = 600
-  @Input() padding?: number | ((datum: cloud.Word, index: number) => number) = 5
-  @Input() font?: string | ((datum: cloud.Word, index: number) => string) = 'serif'
-  @Input() fontSizeMapper?: (datum: cloud.Word, index: number) => number = defaultFontSizeMapper
-  @Input() rotate?: number | ((datum: cloud.Word, index: number) => number) = 0
-  @Input() autoFill?: boolean = true
+  @Input() data: cloud.Word[] = [];
+  @Input() width?: number = 700;
+  @Input() height?: number = 600;
+  @Input() padding?:
+    | number
+    | ((datum: cloud.Word, index: number) => number) = 5;
+  @Input() font?: string | ((datum: cloud.Word, index: number) => string) =
+    'serif';
+  @Input() fontSizeMapper?: (datum: cloud.Word, index: number) => number =
+    defaultFontSizeMapper;
+  @Input() rotate?: number | ((datum: cloud.Word, index: number) => number) = 0;
+  @Input() autoFill?: boolean = true;
   @Input() fillMapper?: (datum: cloud.Word, index: number) => string;
   @Input() animations?: boolean = false;
-  @Input() fontWeight: string | number = "normal";
+  @Input() fontWeight: string | number = 'normal';
 
-  @Output() wordClick = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
-  @Output() wordMouseOver = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
-  @Output() wordMouseOut = new EventEmitter<{ event: MouseEvent, word: cloud.Word }>()
+  @Output() wordClick = new EventEmitter<{
+    event: MouseEvent;
+    word: cloud.Word;
+  }>();
+  @Output() wordMouseOver = new EventEmitter<{
+    event: MouseEvent;
+    word: cloud.Word;
+  }>();
+  @Output() wordMouseOut = new EventEmitter<{
+    event: MouseEvent;
+    word: cloud.Word;
+  }>();
 
-  private isMouseClickUsed = false
-  private isMouseOverUsed = false
-  private isMouseOutUsed = false
-  private static TAG = '[AngularD3CloudComponent]'
+  private isMouseClickUsed = false;
+  private isMouseOverUsed = false;
+  private isMouseOutUsed = false;
+  private static TAG = '[AngularD3CloudComponent]';
 
   ngOnInit(): void {
-    this.isMouseClickUsed = this.wordClick.observers.length > 0
-    this.isMouseOverUsed = this.wordMouseOver.observers.length > 0
-    this.isMouseOutUsed = this.wordMouseOut.observers.length > 0
+    this.isMouseClickUsed = this.wordClick.observers.length > 0;
+    this.isMouseOverUsed = this.wordMouseOver.observers.length > 0;
+    this.isMouseOutUsed = this.wordMouseOut.observers.length > 0;
   }
 
   ngAfterViewInit() {
-    this.renderCloud()
+    this.renderCloud();
   }
 
   ngOnChanges(_changes: SimpleChanges): void {
     if (this.wordcloud) {
-      this.renderCloud()
+      this.renderCloud();
     }
   }
 
   renderCloud() {
-    this.validateProps()
+    this.validateProps();
 
-    select(this.wordcloud?.nativeElement!)
-      .selectAll('*')
-      .remove();
+    select(this.wordcloud?.nativeElement!).selectAll('*').remove();
 
-    const layout = cloud()
+    const _cloud = (cloud as any).default() as d3.layout.Cloud<cloud.Word>
+    const layout = _cloud
       .size([this.width!, this.height!])
       .font(this.font as any)
       .fontWeight(this.fontWeight)
@@ -68,7 +89,7 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
       .padding(this.padding as any)
       .rotate(this.rotate as any)
       .fontSize(this.fontSizeMapper!)
-      .on('end', words => {
+      .on('end', (words: any) => {
         const texts = select(this.wordcloud?.nativeElement!)
           .append('svg')
           .attr('width', layout.size()[0])
@@ -84,14 +105,12 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
           .append('text')
           .style('font-family', this.font as any)
           .style('font-weight', this.fontWeight)
-          .style('fill', (word, i) => {
+          .style('fill', (word: any, i) => {
             if (this.autoFill) {
-              if (this.fillMapper)
-                return this.fillMapper(word, i)
-              else
-                return fill(i.toString())
+              if (this.fillMapper) return this.fillMapper(word, i);
+              else return fill(i.toString());
             } else {
-              return null
+              return null;
             }
           })
           .attr('text-anchor', 'middle')
@@ -99,83 +118,140 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
 
         if (!this.animations) {
           texts
-            .attr('transform', d => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
-            .style('font-size', d => `${d.size}px`)
-            .style("fill-opacity", 1)
+            .attr(
+              'transform',
+              (d: any) => `translate(${[d.x, d.y]})rotate(${d.rotate})`
+            )
+            .style('font-size', (d: any) => `${d.size}px`)
+            .style('fill-opacity', 1);
         } else {
           // Initial status
-          texts
-            .style('font-size', 1)
-            .style("fill-opacity", 1e-6);
+          texts.style('font-size', 1).style('fill-opacity', 1e-6);
 
           //Entering and existing words
           texts
             .transition()
             .duration(600)
-            .attr('transform', d => `translate(${[d.x, d.y]})rotate(${d.rotate})`)
-            .style('font-size', d => `${d.size}px`)
-            .style("fill-opacity", 1);
+            .attr(
+              'transform',
+              (d: any) => `translate(${[d.x, d.y]})rotate(${d.rotate})`
+            )
+            .style('font-size', (d: any) => `${d.size}px`)
+            .style('fill-opacity', 1);
         }
 
         if (this.isMouseClickUsed) {
-          texts.on('click', (event: MouseEvent, word: cloud.Word) => {
-            this.wordClick.emit({ event, word })
-          })
+          texts.on('click', (event: MouseEvent, word: any) => {
+            this.wordClick.emit({ event, word });
+          });
         }
         if (this.isMouseOverUsed) {
-          texts.on('mouseover', (event: MouseEvent, word: cloud.Word) => {
-            this.wordMouseOver.emit({ event, word })
-          })
+          texts.on('mouseover', (event: MouseEvent, word: any) => {
+            this.wordMouseOver.emit({ event, word });
+          });
         }
 
         if (this.isMouseOutUsed) {
-          texts.on('mouseout', (event: MouseEvent, word: cloud.Word) => {
-            this.wordMouseOut.emit({ event, word })
-          })
+          texts.on('mouseout', (event: MouseEvent, word: any) => {
+            this.wordMouseOut.emit({ event, word });
+          });
         }
       });
-    layout.start()
+    layout.start();
   }
 
   private validateProps(): void {
     if (!this.data || !Array.isArray(this.data)) {
-      throw new TypeError(`${AngularD3CloudComponent.TAG}: [data] must be an array. Current value is: [${this.data}]`);
+      throw new TypeError(
+        `${AngularD3CloudComponent.TAG}: [data] must be an array. Current value is: [${this.data}]`
+      );
     }
 
-    if (this.height === null || this.height === undefined || isNaN(this.height) || this.height <= 0) {
-      throw new TypeError(`${AngularD3CloudComponent.TAG}: [height] must be a positive number (greater than 0). Current value is: [${this.height}]`)
+    if (
+      this.height === null ||
+      this.height === undefined ||
+      isNaN(this.height) ||
+      this.height <= 0
+    ) {
+      throw new TypeError(
+        `${AngularD3CloudComponent.TAG}: [height] must be a positive number (greater than 0). Current value is: [${this.height}]`
+      );
     }
 
-    if (this.width === null || this.width === undefined || isNaN(this.width) || this.width <= 0) {
-      throw new TypeError(`${AngularD3CloudComponent.TAG}: [width] must be a positive number (greater than 0). Current value is: [${this.width}]`)
+    if (
+      this.width === null ||
+      this.width === undefined ||
+      isNaN(this.width) ||
+      this.width <= 0
+    ) {
+      throw new TypeError(
+        `${AngularD3CloudComponent.TAG}: [width] must be a positive number (greater than 0). Current value is: [${this.width}]`
+      );
     }
 
-    if (this.padding == null || this.padding === undefined || !['number', 'function'].includes(typeof this.padding) || this.padding < 0) {
-      throw new TypeError(`${AngularD3CloudComponent.TAG}: [padding] must be a positive number or function. Current value is: [${this.padding}]`)
+    if (
+      this.padding == null ||
+      this.padding === undefined ||
+      !['number', 'function'].includes(typeof this.padding) ||
+      (typeof this.padding === 'number' && this.padding < 0)
+    ) {
+      throw new TypeError(
+        `${AngularD3CloudComponent.TAG}: [padding] must be a positive number or function. Current value is: [${this.padding}]`
+      );
     }
 
-    if (this.font === null || this.font === undefined || !['string', 'function'].includes(typeof this.font)) {
-      throw new TypeError(`${AngularD3CloudComponent.TAG}: [font] must be a positive string or function. Current value is: [${this.font}]`)
+    if (
+      this.font === null ||
+      this.font === undefined ||
+      !['string', 'function'].includes(typeof this.font)
+    ) {
+      throw new TypeError(
+        `${AngularD3CloudComponent.TAG}: [font] must be a positive string or function. Current value is: [${this.font}]`
+      );
     }
 
     if (!this.fontSizeMapper || typeof this.fontSizeMapper !== 'function') {
-      throw new TypeError(`${AngularD3CloudComponent.TAG}: [fontSizeMapper] must be a function. Current value is: [${this.fontSizeMapper}]`)
+      throw new TypeError(
+        `${AngularD3CloudComponent.TAG}: [fontSizeMapper] must be a function. Current value is: [${this.fontSizeMapper}]`
+      );
     }
 
     if (this.fillMapper && typeof this.fillMapper !== 'function') {
-      throw new TypeError(`${AngularD3CloudComponent.TAG}: [fillMapper] must be a function. Current value is: [${this.fillMapper}]`)
+      throw new TypeError(
+        `${AngularD3CloudComponent.TAG}: [fillMapper] must be a function. Current value is: [${this.fillMapper}]`
+      );
     }
 
-    if (this.rotate === null || this.rotate === undefined || !['number', 'function'].includes(typeof this.rotate) || this.rotate < 0) {
-      throw new TypeError(`${AngularD3CloudComponent.TAG}: [rotate] must be a positive number or function. Current value is: [${this.rotate}]`)
+    if (
+      this.rotate === null ||
+      this.rotate === undefined ||
+      !['number', 'function'].includes(typeof this.rotate) ||
+      (typeof this.rotate === 'number' && this.rotate < 0)
+    ) {
+      throw new TypeError(
+        `${AngularD3CloudComponent.TAG}: [rotate] must be a positive number or function. Current value is: [${this.rotate}]`
+      );
     }
 
-    if (this.autoFill === null || this.autoFill === undefined || typeof this.autoFill !== 'boolean') {
-      throw new TypeError(`${AngularD3CloudComponent.TAG}: [autoFill] must be boolean. Current value is: [${this.autoFill}]`)
+    if (
+      this.autoFill === null ||
+      this.autoFill === undefined ||
+      typeof this.autoFill !== 'boolean'
+    ) {
+      throw new TypeError(
+        `${AngularD3CloudComponent.TAG}: [autoFill] must be boolean. Current value is: [${this.autoFill}]`
+      );
     }
 
-    if (this.fontWeight === null || this.fontWeight === undefined || !['number', 'string'].includes(typeof this.fontWeight) || this.fontWeight < 0) {
-      throw new TypeError(`${AngularD3CloudComponent.TAG}: [fontWeight] must be a positive number or a string. Current value is: [${this.fontWeight}]`)
+    if (
+      this.fontWeight === null ||
+      this.fontWeight === undefined ||
+      !['number', 'string'].includes(typeof this.fontWeight) ||
+      (typeof this.fontWeight === 'number' && this.fontWeight < 0)
+    ) {
+      throw new TypeError(
+        `${AngularD3CloudComponent.TAG}: [fontWeight] must be a positive number or a string. Current value is: [${this.fontWeight}]`
+      );
     }
   }
 }
