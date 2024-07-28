@@ -5,8 +5,14 @@ D3 Cloud component for Angular built upon d3-cloud
 
 # Installation
 ```sh
-# for Angular >= 16
-npm install --save angular-d3-cloud
+# for Angular 18
+npm install --save angular-d3-cloud@^18.0.0
+
+# for Angular 17
+npm install --save angular-d3-cloud@^17.0.0
+
+# for Angular 16
+npm install --save angular-d3-cloud@^2.0.0
 
 # for Angular < 16
 npm install --save angular-d3-cloud@^1.0.0
