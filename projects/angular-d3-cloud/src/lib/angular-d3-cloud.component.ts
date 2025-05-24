@@ -21,7 +21,9 @@ const fill = scaleOrdinal(schemeCategory10);
 const defaultFontSizeMapper: any = (word: AngularD3Word) => word.value;
 @Component({
   selector: 'angular-d3-cloud',
-  templateUrl: './angular-d3-cloud.component.html',
+  imports: [],
+  template: `<div #wordcloud></div>`,
+  styles: ``,
 })
 export class AngularD3CloudComponent implements OnChanges, OnInit {
   @ViewChild('wordcloud') wordcloud: ElementRef<HTMLDivElement> | undefined;
@@ -80,7 +82,7 @@ export class AngularD3CloudComponent implements OnChanges, OnInit {
 
     select(this.wordcloud?.nativeElement!).selectAll('*').remove();
 
-    const _cloud = (cloud as any).default() as d3.layout.Cloud<cloud.Word>
+    const _cloud = (cloud as any).default() as d3.layout.Cloud<cloud.Word>;
     const layout = _cloud
       .size([this.width!, this.height!])
       .font(this.font as any)

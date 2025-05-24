@@ -3,4 +3,3 @@
  */
 
 export * from './lib/angular-d3-cloud.component';
-export * from './lib/angular-d3-cloud.module';

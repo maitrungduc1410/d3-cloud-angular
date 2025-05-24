@@ -1,4 +1,7 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { AngularD3CloudComponent } from 'angular-d3-cloud';
 import { scaleLinear, scaleOrdinal } from 'd3-scale';
 import {
   schemeCategory10,
@@ -10,7 +13,9 @@ import {
 
 @Component({
   selector: 'app-root',
+  imports: [AngularD3CloudComponent, FormsModule, CommonModule],
   templateUrl: './app.component.html',
+  styleUrl: './app.component.scss',
 })
 export class AppComponent {
   str =
