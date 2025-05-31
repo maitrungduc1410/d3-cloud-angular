@@ -2,10 +2,10 @@
   "name": "angular-d3-cloud",
   "title": "Angular D3 Word Cloud",
   "description": "D3 word cloud component for Angular built upon d3-cloud",
-  "version": "19.0.0",
+  "version": "20.0.0",
   "peerDependencies": {
-    "@angular/common": "^19.2.0",
-    "@angular/core": "^19.2.0"
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0"
   },
   "dependencies": {
     "d3-cloud": "^1.2.7",

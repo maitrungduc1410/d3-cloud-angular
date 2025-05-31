@@ -5,6 +5,9 @@ D3 Cloud component for Angular built upon d3-cloud
 
 # Installation
 ```sh
+# for Angular 20
+npm install --save angular-d3-cloud@^20.0.0
+
 # for Angular 19
 npm install --save angular-d3-cloud@^19.0.0
 
@@ -23,7 +26,18 @@ npm install --save angular-d3-cloud@^1.0.0
 # Usage
 First import the package to your app module
 ```ts
-// Angular >= 19
+// Angular >= 20
+import { AngularD3Cloud } from 'angular-d3-cloud';
+
+@Component({
+  selector: 'app-root',
+  imports: [AngularD3Cloud],
+  templateUrl: './app.html',
+  styleUrl: './app.scss',
+})
+export class App {}
+
+// Angular 19
 import { AngularD3CloudComponent } from 'angular-d3-cloud';
 @Component({
   selector: 'app-root',
@@ -31,7 +45,7 @@ import { AngularD3CloudComponent } from 'angular-d3-cloud';
 })
 export class AppComponent {}
 
-// app.module.ts (Angular <= 18)
+// app.module.ts (Angular < 19)
 import { AngularD3CloudModule } from 'angular-d3-cloud'
 @NgModule({
   imports: [
