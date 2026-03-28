@@ -9,11 +9,11 @@ import {
   schemePastel1,
   schemePastel2,
 } from 'd3-scale-chromatic';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
   selector: 'app-root',
-  imports: [AngularD3Cloud, FormsModule, CommonModule],
+  imports: [AngularD3Cloud, FormsModule],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

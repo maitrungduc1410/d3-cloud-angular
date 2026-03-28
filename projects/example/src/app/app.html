@@ -43,9 +43,11 @@
         style="width: 200px"
         (ngModelChange)="setFillScheme($event)"
       >
-        <option *ngFor="let item of schemas()" [value]="item.id">
-          {{ item.name }}
-        </option>
+        @for (item of schemas(); track item.id) {
+          <option [value]="item.id">
+            {{ item.name }}
+          </option>
+        }
       </select>
       <button
         class="my-1 ml-3 btn btn-primary"
