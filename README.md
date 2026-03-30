@@ -7,6 +7,9 @@ D3 Cloud component for Angular built upon d3-cloud
 # Installation
 
 ```sh
+# for Angular 21
+npm install --save angular-d3-cloud@^21.0.0
+
 # for Angular 20
 npm install --save angular-d3-cloud@^20.0.0
 
