@@ -7,6 +7,9 @@ D3 Cloud component for Angular built upon d3-cloud
 # Installation
 
 ```sh
+# for Angular 22
+npm install --save angular-d3-cloud@^22.0.0
+
 # for Angular 21
 npm install --save angular-d3-cloud@^21.0.0
 
@@ -109,6 +112,16 @@ Run the following commands to start sample project:
 ng build angular-d3-cloud --watch
 npm start # in a separate terminal
 ```
+
+# Releasing
+
+This repo uses [Changesets](https://github.com/changesets/changesets) and GitHub Actions **trusted publishing** (OIDC) — no `NPM_TOKEN` secret.
+
+1. On each PR that changes published behaviour: `npm run changeset`
+2. Merging to `master` opens (or updates) a `chore: release vX.Y.Z` PR
+3. Merging that release PR publishes `angular-d3-cloud` from `dist/` with `--provenance` and creates the GitHub release
+
+One-time npm setup (package Settings → Trusted Publisher): repository `maitrungduc1410/d3-cloud-angular`, workflow `release.yml`. Details in [`.changeset/README.md`](./.changeset/README.md).
 
 # Thanks
 

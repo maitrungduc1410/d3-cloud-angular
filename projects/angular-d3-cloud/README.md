@@ -1,10 +1,15 @@
 # Angular D3 Word Cloud
+
 D3 Cloud component for Angular built upon d3-cloud
 
-<img src="./demo.png">
+<img src="../../demo.png">
 
 # Installation
+
 ```sh
+# for Angular 22
+npm install --save angular-d3-cloud@^22.0.0
+
 # for Angular 21
 npm install --save angular-d3-cloud@^21.0.0
 
@@ -26,8 +31,11 @@ npm install --save angular-d3-cloud@^2.0.0
 # for Angular < 16
 npm install --save angular-d3-cloud@^1.0.0
 ```
+
 # Usage
+
 First import the package to your app module
+
 ```ts
 // Angular >= 20
 import { AngularD3Cloud } from 'angular-d3-cloud';
@@ -57,6 +65,7 @@ import { AngularD3CloudModule } from 'angular-d3-cloud'
   ...
 })
 ```
+
 Now the component is ready to use.
 
 ```html
@@ -72,6 +81,7 @@ Now the component is ready to use.
   (wordClick)="onWorkClick($event)"
 ></angular-d3-cloud>
 ```
+
 ```ts
 // app.component.ts
 export class AppComponent {
@@ -82,7 +92,9 @@ export class AppComponent {
     })
 }
 ```
+
 # Props
+
 | Name           | Description                                                                                                | Type                                          | Required | Default             |
 |----------------|------------------------------------------------------------------------------------------------------------|-----------------------------------------------|----------|---------------------|
 | data           | The input data for rendering                                                                               | Array<{ text: string, value: number }>        |     ✓    |                     |
@@ -98,6 +110,7 @@ export class AppComponent {
 | animations | Whether animated transitions is active or not | boolean |          |  false |
 
 # Events
+
 | Name          | Description                                              | Payload                           |
 |---------------|----------------------------------------------------------|-----------------------------------|
 | wordClick     | Event triggered when click event triggered on a word     | { event: MouseEvent, word: Word } |
@@ -105,11 +118,16 @@ export class AppComponent {
 | wordMouseOut  | Event triggered when mouseout event triggered on a word  | { event: MouseEvent, word: Word } |
 
 > The `Word` interface imported from `d3-cloud`
+
 # Example
+
 Run the following commands to start sample project:
+
 ```
 ng build angular-d3-cloud --watch
 npm start # in a separate terminal
 ```
+
 # Thanks
+
 This project is built with the idea of [React D3 Cloud](https://github.com/Yoctol/react-d3-cloud)

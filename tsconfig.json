@@ -4,11 +4,8 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "angular-d3-cloud": [
-        "./dist/angular-d3-cloud"
-      ]
+      "angular-d3-cloud": ["./dist/angular-d3-cloud"]
     },
-    "strict": true,
     "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
@@ -23,9 +20,7 @@
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
-    "strictInputAccessModifiers": true,
-    "typeCheckHostBindings": true,
-    "strictTemplates": true
+    "strictInputAccessModifiers": true
   },
   "files": [],
   "references": [
